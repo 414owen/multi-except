@@ -14,9 +14,10 @@ module Control.Applicative.MultiExcept
   , succeed
   ) where
 
-import Data.List.NonEmpty (NonEmpty)
+import Data.Functor.Alt
 import Data.DList.DNonEmpty (DNonEmpty)
 import qualified Data.DList.DNonEmpty as DNE
+import Data.List.NonEmpty (NonEmpty)
 
 -- | A MultiExcept is a success value, or one or more errors
 data MultiExcept err a
@@ -31,7 +32,7 @@ runMultiExcept (Success a) = Right a
 
 -- | Throw a single error
 throwError :: err -> MultiExcept err a
-throwError = Errors . DNE.singleton
+throwError = Errors . pure
 
 -- | Embeds a value into a MultiExcept context
 succeed :: a -> MultiExcept err a
@@ -44,7 +45,12 @@ instance Functor (MultiExcept err) where
 instance Applicative (MultiExcept err) where
   pure = succeed
 
-  Errors l <*> Errors l' = Errors $ DNE.append l l'
+  Errors l <*> Errors l' = Errors $ l <> l'
   Success f <*> Success a = Success $ f a
   Errors l <*> _ = Errors l
   _ <*> Errors l = Errors l
+
+instance Alt (MultiExcept err) where
+  Success a <!> _ = Success a
+  _ <!> Success a = Success a
+  Errors l <!> Errors r = Errors (l <> r)
