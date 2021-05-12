@@ -9,7 +9,6 @@ multi-except - succeed, or return one or more errors
 ```haskell
 {-# LANGUAGE ApplicativeDo #-}
 
-import Data.List.NonEmpty (NonEmpty)
 import Control.Applicative.MultiExcept
 
 errors :: MultiExcept String (Int, Int)
