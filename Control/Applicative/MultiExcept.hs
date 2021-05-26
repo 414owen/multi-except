@@ -9,9 +9,10 @@ Portability : portable
 
 module Control.Applicative.MultiExcept
   ( MultiExcept
+  , fromEither
   , runMultiExcept
-  , throwError
   , succeed
+  , throwError
   ) where
 
 import Data.Functor.Alt
