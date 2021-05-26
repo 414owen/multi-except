@@ -1,6 +1,6 @@
 # multi-except
 
-[![hackage-version](https://img.shields.io/hackage/v/multi-except?color=purple)](https://hackage.haskell.org/package/multi-except-0.1.3.0)
+[![hackage-version](https://img.shields.io/hackage/v/multi-except?color=purple)](https://hackage.haskell.org/package/multi-except-0.1.4.0)
 
 multi-except - succeed, or return one or more errors
 
