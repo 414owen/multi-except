@@ -38,6 +38,11 @@ throwError = Errors . pure
 succeed :: a -> MultiExcept err a
 succeed a = Success a
 
+-- | Convert an Either to a MultiExcept
+fromEither :: Either err a -> MultiExcept err a
+fromEither (Left err) = Errors (DNE.singleton err)
+fromEither (Right a) = Success a
+
 instance Functor (MultiExcept err) where
   fmap f (Success a) = Success $ f a
   fmap _ (Errors errs) = Errors errs
