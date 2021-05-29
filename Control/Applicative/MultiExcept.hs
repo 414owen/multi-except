@@ -14,6 +14,7 @@ module Control.Applicative.MultiExcept
   , succeed
   ) where
 
+import Data.Bifunctor
 import Data.Functor.Alt
 import Data.DList.DNonEmpty (DNonEmpty)
 import qualified Data.DList.DNonEmpty as DNE
@@ -59,3 +60,7 @@ instance Alt (MultiExcept err) where
   Success a <!> _ = Success a
   _ <!> Success a = Success a
   Errors l <!> Errors r = Errors (l <> r)
+
+instance Bifunctor MultiExcept where
+ bimap _ fa (Success a)    = Success $ fa a
+ bimap ferr _ (Errors err) = Errors $ fmap ferr err
