@@ -45,7 +45,7 @@ throwErrors = Errors
 
 -- | Embeds a value into a 'MultiExcept' context.
 succeed :: forall err a. a -> MultiExcept err a
-succeed a = Success a
+succeed = Success
 
 -- | Convert an 'Either' to a 'MultiExcept'.
 fromEither :: Either err a -> MultiExcept err a
