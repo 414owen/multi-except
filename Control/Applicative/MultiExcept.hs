@@ -84,3 +84,7 @@ instance Alt (MultiExcept err) where
   Success a <!> _ = Success a
   _ <!> Success a = Success a
   Errors l <!> Errors r = Errors (l <> r)
+
+instance Foldable (MultiExcept err) where
+  foldr f acc (Success a) = f a acc
+  foldr _ acc _           = acc
