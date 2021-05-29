@@ -48,6 +48,10 @@ instance Functor (MultiExcept err) where
   fmap f (Success a) = Success $ f a
   fmap _ (Errors errs) = Errors errs
 
+instance Bifunctor MultiExcept where
+ bimap _ fa (Success a)    = Success $ fa a
+ bimap ferr _ (Errors err) = Errors $ fmap ferr err
+
 instance Applicative (MultiExcept err) where
   pure = succeed
 
@@ -60,7 +64,3 @@ instance Alt (MultiExcept err) where
   Success a <!> _ = Success a
   _ <!> Success a = Success a
   Errors l <!> Errors r = Errors (l <> r)
-
-instance Bifunctor MultiExcept where
- bimap _ fa (Success a)    = Success $ fa a
- bimap ferr _ (Errors err) = Errors $ fmap ferr err
