@@ -7,6 +7,8 @@ Stability   : stable
 Portability : portable
 -}
 
+{-# LANGUAGE ScopedTypeVariables #-}
+
 module Control.Applicative.MultiExcept
   ( MultiExcept
   , fromEither
@@ -43,7 +45,7 @@ throwErrors :: DNonEmpty err -> MultiExcept err a
 throwErrors = Errors
 
 -- | Embeds a value into a 'MultiExcept' context.
-succeed :: a -> MultiExcept err a
+succeed :: forall err a. a -> MultiExcept err a
 succeed a = Success a
 
 -- | Convert an 'Either' to a 'MultiExcept'.
