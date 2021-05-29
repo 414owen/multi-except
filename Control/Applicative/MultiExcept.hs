@@ -22,7 +22,6 @@ module Control.Applicative.MultiExcept
 
 import Data.Functor.Alt
 import Data.DList.DNonEmpty (DNonEmpty)
-import qualified Data.DList.DNonEmpty as DNE
 import Data.List.NonEmpty (NonEmpty)
 
 -- | A 'MultiExcept' is a success value, or one or more errors.
@@ -32,8 +31,8 @@ data MultiExcept err a
   deriving (Eq, Ord, Read, Show)
 
 -- | Run the computation.
-runMultiExcept :: MultiExcept err a -> Either (NonEmpty err) a
-runMultiExcept (Errors errs) = Left $ DNE.toNonEmpty errs
+runMultiExcept :: MultiExcept err a -> Either (DNonEmpty err) a
+runMultiExcept (Errors errs) = Left errs
 runMultiExcept (Success a) = Right a
 
 -- | Throw a single error.
