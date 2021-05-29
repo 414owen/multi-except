@@ -36,11 +36,11 @@ runMultiExcept (Errors errs) = Left errs
 runMultiExcept (Success a) = Right a
 
 -- | Throw a single error.
-throwError :: err -> MultiExcept err a
+throwError :: forall a err. err -> MultiExcept err a
 throwError = Errors . pure
 
 -- | Throw one or more errors.
-throwErrors :: DNonEmpty err -> MultiExcept err a
+throwErrors :: forall a err. DNonEmpty err -> MultiExcept err a
 throwErrors = Errors
 
 -- | Embeds a value into a 'MultiExcept' context.
