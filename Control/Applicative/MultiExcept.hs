@@ -63,3 +63,7 @@ instance Alt (MultiExcept err) where
 instance Foldable (MultiExcept err) where
   foldr f acc (Success a) = f a acc
   foldr _ acc _           = acc
+
+instance Traversable (MultiExcept err) where
+  traverse f (Success a)   = Success <$> f a
+  traverse _ (Errors err) = pure $ Errors err
