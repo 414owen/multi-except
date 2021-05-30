@@ -24,6 +24,7 @@ test-suite unit-tests
   type:               exitcode-stdio-1.0
   hs-source-dirs:     test
   main-is:            Main.hs
+  default-language:   Haskell2010
   other-modules:      Test.Functor
                     , Test.Applicative
   build-depends:      base
