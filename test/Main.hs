@@ -7,6 +7,7 @@ import qualified Test.Alt
 import qualified Test.Functor
 import qualified Test.Bifunctor
 import qualified Test.Foldable
+import qualified Test.Traversable
 
 main :: IO ()
 main = hspec spec
@@ -18,3 +19,4 @@ spec = do
   Test.Alt.spec
   Test.Bifunctor.spec
   Test.Foldable.spec
+  Test.Traversable.spec
