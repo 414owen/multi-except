@@ -23,7 +23,6 @@ module Control.Applicative.MultiExcept
 import Data.Bifunctor
 import Data.Functor.Alt
 import Data.DList.DNonEmpty (DNonEmpty)
-import Data.List.NonEmpty (NonEmpty)
 
 -- | A 'MultiExcept' is a success value, or one or more errors.
 data MultiExcept err a
