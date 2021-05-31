@@ -29,6 +29,7 @@ test-suite unit-tests
                     , Test.Applicative
                     , Test.Alt
                     , Test.Bifunctor
+                    , Test.Foldable
   build-depends:      base
                     , multi-except
                     , semigroupoids
