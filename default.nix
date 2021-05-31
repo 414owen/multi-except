@@ -1,7 +1,7 @@
 { mkDerivation, base, dlist_1_0, lib, semigroupoids, hspec }:
 mkDerivation {
   pname = "multi-except";
-  version = "0.2.0.0";
+  version = "0.2.1.0";
   src = ./.;
   libraryHaskellDepends = [ base dlist_1_0 semigroupoids ];
   testHaskellDepends = [ base hspec ];

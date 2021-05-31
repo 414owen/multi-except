@@ -1,7 +1,7 @@
 cabal-version:       >=1.10
 
 name:                multi-except
-version:             0.2.0.0
+version:             0.2.1.0
 synopsis:            Multiple Exceptions
 description:         Exception type that supports reporting multiple exceptions
 license:             MIT

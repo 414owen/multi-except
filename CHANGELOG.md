@@ -1,5 +1,11 @@
 # Revision history for multi-except
 
+## 0.2.1.0 -- 2021-05-31
+
+* Added Bifunctor instance
+* Added Foldable instance
+* Added Traversable instance
+
 ## 0.2.0.0 -- 2021-05-29
 
 * Changed order of type variables in `succeed`
