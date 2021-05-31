@@ -20,6 +20,7 @@ module Control.Applicative.MultiExcept
   , throwErrors
   ) where
 
+import Data.Bifunctor
 import Data.Functor.Alt
 import Data.DList.DNonEmpty (DNonEmpty)
 import Data.List.NonEmpty (NonEmpty)
@@ -67,6 +68,10 @@ join (Errors a) = Errors a
 instance Functor (MultiExcept err) where
   fmap f (Success a) = Success $ f a
   fmap _ (Errors errs) = Errors errs
+
+instance Bifunctor MultiExcept where
+ bimap _ fa (Success a)    = Success $ fa a
+ bimap ferr _ (Errors err) = Errors $ fmap ferr err
 
 instance Applicative (MultiExcept err) where
   pure = Success
