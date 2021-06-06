@@ -22,16 +22,16 @@ module Control.Applicative.MultiExcept
 
 import Data.Bifunctor
 import Data.Functor.Alt
-import Data.DList.DNonEmpty (DNonEmpty)
+import Data.DList.NonEmpty (NonEmptyDList)
 
 -- | A 'MultiExcept' is a success value, or one or more errors.
 data MultiExcept err a
   = Success a
-  | Errors (DNonEmpty err)
+  | Errors (NonEmptyDList err)
   deriving (Eq, Ord, Read, Show)
 
 -- | Run the computation.
-runMultiExcept :: MultiExcept err a -> Either (DNonEmpty err) a
+runMultiExcept :: MultiExcept err a -> Either (NonEmptyDList err) a
 runMultiExcept (Errors errs) = Left errs
 runMultiExcept (Success a) = Right a
 
@@ -40,7 +40,7 @@ throwError :: forall a err. err -> MultiExcept err a
 throwError = Errors . pure
 
 -- | Throw one or more errors.
-throwErrors :: forall a err. DNonEmpty err -> MultiExcept err a
+throwErrors :: forall a err. NonEmptyDList err -> MultiExcept err a
 throwErrors = Errors
 
 -- | Embeds a value into a 'MultiExcept' context.
@@ -53,7 +53,7 @@ fromEither (Left err) = throwError err
 fromEither (Right a) = Success a
 
 -- | Convert a multi-error 'Either' to a 'MultiExcept'.
-fromEitherPoly :: Either (DNonEmpty err) a -> MultiExcept err a
+fromEitherPoly :: Either (NonEmptyDList err) a -> MultiExcept err a
 fromEitherPoly (Left errs) = Errors errs
 fromEitherPoly (Right a) = Success a
 

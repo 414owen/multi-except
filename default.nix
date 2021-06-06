@@ -1,9 +1,9 @@
-{ mkDerivation, base, dlist_1_0, lib, semigroupoids, hspec }:
+{ mkDerivation, base, dlist-nonempty, lib, semigroupoids, hspec }:
 mkDerivation {
   pname = "multi-except";
-  version = "0.2.1.0";
+  version = "0.3.0.0";
   src = ./.;
-  libraryHaskellDepends = [ base dlist_1_0 semigroupoids ];
+  libraryHaskellDepends = [ base dlist-nonempty semigroupoids ];
   testHaskellDepends = [ base hspec ];
   homepage = "https://github.com/414owen/multi-except";
   description = "Multiple Exceptions";
