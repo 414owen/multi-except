@@ -20,3 +20,4 @@ errors = do
 
 -- errors: Errors ["no monad instance", "i am scared"]
 ```
+
