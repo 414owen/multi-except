@@ -8,18 +8,25 @@ Portability : portable
 -}
 
 {-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE NoImplicitPrelude   #-}
 
 module Control.Applicative.MultiExcept
   ( MultiExcept
   , fromEither
   , fromEitherPoly
   , join
+  , or
   , runMultiExcept
   , succeed
   , throwError
   , throwErrors
   ) where
 
+import Prelude (Eq, Ord, Either(..), Read, Show, Applicative(..), (.), ($))
+
+import Data.Foldable        (Foldable(..))
+import Data.Traversable     (Traversable(..))
+import Data.Semigroup       (Semigroup(..))
 import Data.Bifunctor
 import Data.Functor.Alt
 import Data.DList.DNonEmpty (DNonEmpty)
@@ -80,10 +87,13 @@ instance Applicative (MultiExcept err) where
   Errors l <*> _ = Errors l
   _ <*> Errors l = Errors l
 
+or :: MultiExcept err a -> MultiExcept err a -> MultiExcept err a
+Success a `or` _ = Success a
+_ `or` Success a = Success a
+Errors l `or` Errors r = Errors (l <> r)
+
 instance Alt (MultiExcept err) where
-  Success a <!> _ = Success a
-  _ <!> Success a = Success a
-  Errors l <!> Errors r = Errors (l <> r)
+  (<!>) = or
 
 instance Foldable (MultiExcept err) where
   foldr f acc (Success a) = f a acc
