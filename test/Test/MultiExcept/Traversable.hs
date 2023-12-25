@@ -1,4 +1,3 @@
-{-# LANGUAGE OverloadedLists #-}
 {-# LANGUAGE TypeApplications #-}
 
 module Test.MultiExcept.Traversable
