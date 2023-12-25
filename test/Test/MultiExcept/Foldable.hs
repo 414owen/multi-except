@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedLists #-}
 {-# LANGUAGE TypeApplications #-}
 
-module Test.Foldable
+module Test.MultiExcept.Foldable
   ( spec
   ) where
 

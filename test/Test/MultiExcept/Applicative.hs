@@ -2,7 +2,7 @@
 {-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE TupleSections #-}
 
-module Test.Applicative
+module Test.MultiExcept.Applicative
   ( spec
   ) where
 

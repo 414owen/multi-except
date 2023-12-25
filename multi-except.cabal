@@ -33,12 +33,12 @@ test-suite unit-tests
   hs-source-dirs:     test
   main-is:            Main.hs
   default-language:   Haskell2010
-  other-modules:      Test.Functor
-                    , Test.Applicative
-                    , Test.Alt
-                    , Test.Bifunctor
-                    , Test.Foldable
-                    , Test.Traversable
+  other-modules:      Test.MultiExcept.Functor
+                    , Test.MultiExcept.Applicative
+                    , Test.MultiExcept.Alt
+                    , Test.MultiExcept.Bifunctor
+                    , Test.MultiExcept.Foldable
+                    , Test.MultiExcept.Traversable
   build-depends:      base
                     , multi-except
                     , hspec

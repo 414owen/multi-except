@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedLists #-}
 {-# LANGUAGE TypeApplications #-}
 
-module Test.Bifunctor
+module Test.MultiExcept.Bifunctor
   ( spec
   ) where
 

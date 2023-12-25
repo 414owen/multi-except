@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedLists #-}
 {-# LANGUAGE TypeApplications #-}
 
-module Test.Functor
+module Test.MultiExcept.Functor
   ( spec
   ) where
 

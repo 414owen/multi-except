@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedLists #-}
 {-# LANGUAGE TypeApplications #-}
 
-module Test.Traversable
+module Test.MultiExcept.Traversable
   ( spec
   ) where
 

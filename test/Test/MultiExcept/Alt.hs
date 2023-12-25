@@ -2,7 +2,7 @@
 {-# LANGUAGE OverloadedLists  #-}
 {-# LANGUAGE TypeApplications #-}
 
-module Test.Alt
+module Test.MultiExcept.Alt
   ( spec
   ) where
 

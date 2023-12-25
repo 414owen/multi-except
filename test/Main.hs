@@ -2,21 +2,21 @@ module Main where
 
 import Test.Hspec
 
-import qualified Test.Applicative
-import qualified Test.Alt
-import qualified Test.Functor
-import qualified Test.Bifunctor
-import qualified Test.Foldable
-import qualified Test.Traversable
+import qualified Test.MultiExcept.Applicative
+import qualified Test.MultiExcept.Alt
+import qualified Test.MultiExcept.Functor
+import qualified Test.MultiExcept.Bifunctor
+import qualified Test.MultiExcept.Foldable
+import qualified Test.MultiExcept.Traversable
 
 main :: IO ()
 main = hspec spec
 
 spec :: Spec
 spec = do
-  Test.Functor.spec
-  Test.Applicative.spec
-  Test.Alt.spec
-  Test.Bifunctor.spec
-  Test.Foldable.spec
-  Test.Traversable.spec
+  Test.MultiExcept.Functor.spec
+  Test.MultiExcept.Applicative.spec
+  Test.MultiExcept.Alt.spec
+  Test.MultiExcept.Bifunctor.spec
+  Test.MultiExcept.Foldable.spec
+  Test.MultiExcept.Traversable.spec
