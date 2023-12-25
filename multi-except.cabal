@@ -16,7 +16,7 @@ homepage:            https://github.com/414owen/multi-except
 library
   exposed-modules:     Control.Applicative.MultiExcept
   build-depends:       base >=4.0 && <5
-                     , dlist-nonempty
+                     , dlist
                      , semigroupoids
   default-language:    Haskell2010
 

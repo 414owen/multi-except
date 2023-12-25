@@ -1,5 +1,9 @@
 # Revision history for multi-except
 
+## Unreleased
+
+* Migrated (back) to dlist, replacing dlist-nonempty
+
 ## 0.3.0.0 -- 2021-06-06
 
 * Switch to dlist-nonempty package
