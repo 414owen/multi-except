@@ -37,8 +37,8 @@ import Data.DList.DNonEmpty (DNonEmpty)
 
 -- | A 'MultiExcept' is a success value, or one or more errors.
 data MultiExcept err a
-  = Success a
-  | Errors (DNonEmpty err)
+  = Success !a
+  | Errors !(DNonEmpty err)
   deriving (Eq, Ord, Read, Show)
 
 -- | Run the computation.
