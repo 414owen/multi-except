@@ -7,8 +7,9 @@ Stability   : stable
 Portability : portable
 -}
 
-{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE CPP                 #-}
 {-# LANGUAGE NoImplicitPrelude   #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Control.Applicative.MultiExcept
   ( MultiExcept
@@ -24,11 +25,14 @@ module Control.Applicative.MultiExcept
 
 import Prelude (Eq, Ord, Either(..), Read, Show, Applicative(..), (.), ($))
 
+import Data.Functor         (Functor(..), (<$>))
 import Data.Foldable        (Foldable(..))
 import Data.Traversable     (Traversable(..))
 import Data.Semigroup       (Semigroup(..))
 import Data.Bifunctor
-import Data.Functor.Alt
+#ifdef Semigroupoids
+import Data.Functor.Alt     (Alt(..))
+#endif
 import Data.DList.DNonEmpty (DNonEmpty)
 
 -- | A 'MultiExcept' is a success value, or one or more errors.
@@ -92,8 +96,10 @@ Success a `or` _ = Success a
 _ `or` Success a = Success a
 Errors l `or` Errors r = Errors (l <> r)
 
+#ifdef Semigroupoids
 instance Alt (MultiExcept err) where
   (<!>) = or
+#endif
 
 instance Foldable (MultiExcept err) where
   foldr f acc (Success a) = f a acc

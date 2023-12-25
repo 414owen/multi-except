@@ -1,0 +1,4 @@
+packages: multi-except.cabal
+
+-- this is for the test suite
+constraints: multi-except +semigroupoids
