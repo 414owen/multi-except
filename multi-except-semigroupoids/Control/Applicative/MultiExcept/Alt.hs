@@ -7,7 +7,10 @@ Stability   : stable
 Portability : portable
 -}
 
+{-# LANGUAGE CPP #-}
+#if MIN_VERSION_base(4,9,0)
 {-# OPTIONS_GHC -Wno-orphans #-}
+#endif
 
 module Control.Applicative.MultiExcept.Alt where
 
