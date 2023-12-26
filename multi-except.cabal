@@ -10,7 +10,7 @@ author:              Owen Shepherd
 maintainer:          owen@owen.cafe
 category:            Exceptions
 build-type:          Simple
-extra-source-files:  CHANGELOG.md
+extra-doc-files:     CHANGELOG.md
 homepage:            https://github.com/414owen/multi-except
 
 tested-with:
