@@ -45,16 +45,15 @@ library
   exposed-modules:     Control.Applicative.MultiExcept
   hs-source-dirs:      multi-except
   build-depends:       base >=4.0 && <5
-                     , dlist
+                     , dlist >=1.0 && <2
 
 library semigroupoid-instances
   import:              common-import
   exposed-modules:     Control.Applicative.MultiExcept.Alt
   hs-source-dirs:      multi-except-semigroupoids
   build-depends:       base >=4.0 && <5
-                     , dlist
                      , multi-except
-                     , semigroupoids
+                     , semigroupoids >=1 && <30
 
 test-suite unit-tests
   import:             common-import
@@ -70,5 +69,5 @@ test-suite unit-tests
   build-depends:      base
                     , multi-except
                     , multi-except:semigroupoid-instances
-                    , hspec
-                    , semigroupoids
+                    , hspec >=2 && <3
+                    , semigroupoids >=1 && <30
