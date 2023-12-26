@@ -30,9 +30,6 @@ import Data.Foldable        (Foldable(..))
 import Data.Traversable     (Traversable(..))
 import Data.Semigroup       (Semigroup(..))
 import Data.Bifunctor
-#ifdef Semigroupoids
-import Data.Functor.Alt     (Alt(..))
-#endif
 import Data.DList.DNonEmpty (DNonEmpty)
 
 -- | A 'MultiExcept' is a success value, or one or more errors.
@@ -95,11 +92,6 @@ or :: MultiExcept err a -> MultiExcept err a -> MultiExcept err a
 Success a `or` _ = Success a
 _ `or` Success a = Success a
 Errors l `or` Errors r = Errors (l <> r)
-
-#ifdef Semigroupoids
-instance Alt (MultiExcept err) where
-  (<!>) = or
-#endif
 
 instance Foldable (MultiExcept err) where
   foldr f acc (Success a) = f a acc
