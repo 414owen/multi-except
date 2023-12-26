@@ -21,17 +21,20 @@ module Control.Applicative.MultiExcept
   , succeed
   , throwError
   , throwErrors
+  , mapMultiExcept
   ) where
 
 import Prelude (Eq(..), Ord(..), Either(..), Applicative(..), (.), ($), id, Show(..), (++))
 
+#if MIN_VERSION_base(4,8,0)
+import Data.Bifunctor
+#endif
 import Data.Functor         (Functor(..), (<$>))
 import Data.Foldable        (Foldable(..))
 import Data.Traversable     (Traversable(..))
 #if MIN_VERSION_base(4,9,0)
 import Data.List.NonEmpty   (NonEmpty(..))
 #endif
-import Data.Bifunctor
 
 
 -- NonEmptyDList
@@ -135,11 +138,19 @@ instance Functor (MultiExcept err) where
   fmap f (Success a) = Success $ f a
   fmap _ (Errors errs) = Errors errs
 
+mapMultiExcept:: (err -> err') -> (a -> a') -> MultiExcept err a -> MultiExcept err' a'
+mapMultiExcept _ fa (Success a)    = Success $ fa a
+mapMultiExcept ferr _ (Errors err) = Errors $ fmap ferr err
+
+
+#if MIN_VERSION_base(4,8,0)
+
 -- | WARNING: O(n) space and time in the length of the amount of errors
 -- this could be fixed by changing the difference list Functor instance.
 instance Bifunctor MultiExcept where
- bimap _ fa (Success a)    = Success $ fa a
- bimap ferr _ (Errors err) = Errors $ fmap ferr err
+  bimap = mapMultiExcept
+
+#endif
 
 instance Applicative (MultiExcept err) where
   pure = Success
