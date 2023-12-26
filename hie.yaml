@@ -1,0 +1,10 @@
+cradle:
+  cabal:
+    - path: "multi-except"
+      component: "lib:multi-except"
+
+    - path: "multi-except-semigroupoids"
+      component: "multi-except:lib:semigroupoid-instances"
+
+    - path: "test"
+      component: "multi-except:test:unit-tests"

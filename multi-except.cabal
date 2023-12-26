@@ -1,4 +1,4 @@
-cabal-version:       2.2
+cabal-version:       3.0
 
 name:                multi-except
 version:             0.3.0.0
@@ -25,12 +25,18 @@ flag semigroupoids
 library
   import:              common-import
   exposed-modules:     Control.Applicative.MultiExcept
-  if flag(semigroupoids)
-    cpp-options:      -DSemigroupoids
+  hs-source-dirs:      multi-except
   build-depends:       base >=4.0 && <5
                      , dlist
-  if flag(semigroupoids)
-    build-depends:    semigroupoids
+
+library semigroupoid-instances
+  import:              common-import
+  exposed-modules:     Control.Applicative.MultiExcept.Alt
+  hs-source-dirs:      multi-except-semigroupoids
+  build-depends:       base >=4.0 && <5
+                     , dlist
+                     , multi-except
+                     , semigroupoids
 
 test-suite unit-tests
   import:             common-import
@@ -45,5 +51,6 @@ test-suite unit-tests
                     , Test.MultiExcept.Traversable
   build-depends:      base
                     , multi-except
+                    , multi-except:semigroupoid-instances
                     , hspec
                     , semigroupoids
