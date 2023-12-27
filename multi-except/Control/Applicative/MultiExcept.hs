@@ -24,8 +24,9 @@ module Control.Applicative.MultiExcept
   , mapMultiExcept
   ) where
 
-import Prelude (Eq(..), Ord(..), Either(..), Applicative(..), (.), ($), id, Show(..), (++))
+import Prelude (Eq(..), Ord(..), Either(..), (.), ($), id, Show(..), (++))
 
+import Control.Applicative  (Applicative(..))
 #if MIN_VERSION_base(4,8,0)
 import Data.Bifunctor
 #endif
