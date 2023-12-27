@@ -1,4 +1,3 @@
-{-# LANGUAGE ApplicativeDo    #-}
 {-# LANGUAGE OverloadedLists  #-}
 
 module Test.MultiExcept.Alt
