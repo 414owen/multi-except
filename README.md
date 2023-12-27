@@ -5,6 +5,16 @@
 
 multi-except - succeed, or return one or more errors
 
+## Adding the dependency
+
+```
+-- in your cabal file
+  -- Add the main package (only depends on base!)
+  , multi-except
+  -- For the Alt instance (depends on semigroupoids)
+  , multi-except:semigroupoid-instances
+```
+
 ## Usage
 
 
