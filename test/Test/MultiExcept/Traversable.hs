@@ -2,8 +2,10 @@ module Test.MultiExcept.Traversable
   ( spec
   ) where
 
-import Test.Hspec
+import Prelude   (Int, Maybe(..), ($), const)
 
+import Data.Traversable
+import Test.Hspec
 import Control.Applicative.MultiExcept
 
 spec :: Spec
