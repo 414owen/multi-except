@@ -4,7 +4,8 @@ module Test.MultiExcept.Functor
 
 import Test.Hspec
 
-import Prelude hiding (Applicative(..))
+import Prelude (Int, ($), Num(..))
+import Data.Functor ((<$>), fmap)
 import Control.Applicative (Applicative(..))
 import Control.Applicative.MultiExcept
 
