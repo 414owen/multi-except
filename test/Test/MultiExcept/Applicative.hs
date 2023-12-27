@@ -1,5 +1,4 @@
 {-# LANGUAGE OverloadedLists  #-}
-{-# LANGUAGE TypeApplications #-}
 
 module Test.MultiExcept.Applicative
   ( spec
@@ -21,7 +20,7 @@ spec = describe "Applicative instance" $ do
     it "accumulates errors" $
       throwError 2 <*> throwError 3 `shouldBe` testErrors
     it "propagates successes" $
-      pure (3,4) `shouldBe` succeed @() (3, 4)
+      pure (3,4) `shouldBe` (succeed (3, 4) :: MultiExcept () (Int, Int))
     it "errors when only one side is successful" $ do
       succeed (+ 1) <*> testErrors `shouldBe` testErrors
-      throwError 2 <*> succeed () `shouldBe` throwError @Int 2
+      throwError 2 <*> succeed () `shouldBe` (throwError 2 :: MultiExcept Int Int)
