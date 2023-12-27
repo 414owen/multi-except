@@ -4,7 +4,7 @@ module Test.MultiExcept.Applicative
 
 import Test.Hspec
 
-import Prelude hiding (Applicative(..))
+import Prelude (Int, ($), Num(..))
 
 import Control.Applicative (Applicative(..))
 import Control.Applicative.MultiExcept
