@@ -4,6 +4,8 @@ module Test.MultiExcept.Functor
 
 import Test.Hspec
 
+import Prelude hiding (Applicative(..))
+import Control.Applicative (Applicative(..))
 import Control.Applicative.MultiExcept
 
 testErrors :: MultiExcept Int Int

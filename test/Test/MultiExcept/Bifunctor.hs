@@ -20,6 +20,8 @@ spec = describe "Bifunctor instance" $ do
 
 #else
 
+import Control.Applicative
+
 spec :: Spec
 spec = pure ()
 
