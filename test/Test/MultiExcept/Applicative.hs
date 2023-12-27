@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedLists  #-}
-
 module Test.MultiExcept.Applicative
   ( spec
   ) where
@@ -9,7 +7,7 @@ import Test.Hspec
 import Control.Applicative.MultiExcept
 
 testErrors :: MultiExcept Int Int
-testErrors = fromEitherPoly $ Left [2, 3]
+testErrors = throwError 2 *> throwError 3
 
 spec :: Spec
 spec = describe "Applicative instance" $ do

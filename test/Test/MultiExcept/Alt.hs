@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedLists  #-}
-
 module Test.MultiExcept.Alt
   ( spec
   ) where
@@ -19,4 +17,4 @@ spec = describe "Alt instance" $ do
   it "prioritizes left succeed" $
     succeed 1 <!> succeed 2 `shouldBe` (succeed 1 :: MultiExcept () Int)
   it "propagates both errors" $ do
-    throwError 1 <!> throwError 2 `shouldBe` (throwErrors [1, 2] :: MultiExcept Int ())
+    throwError 1 <!> throwError 2 `shouldBe` (throwError 1 *> throwError 2 :: MultiExcept Int ())
