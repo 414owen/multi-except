@@ -11,6 +11,7 @@ maintainer:          owen@owen.cafe
 category:            Exceptions
 build-type:          Simple
 extra-doc-files:     CHANGELOG.md
+                   , README.md
 homepage:            https://github.com/414owen/multi-except
 
 tested-with:
@@ -31,6 +32,10 @@ tested-with:
   , GHC==7.2.2
   , GHC==7.0.4
 
+source-repository head
+  type:     git
+  location: https://github.com/414owen/multi-except.git
+
 common common-import
   default-language:    Haskell2010
   ghc-options:         -Wall -W
@@ -47,6 +52,7 @@ library semigroupoid-instances
   import:              common-import
   exposed-modules:     Control.Applicative.MultiExcept.Alt
   hs-source-dirs:      multi-except-semigroupoids
+  visibility:          public
   build-depends:       base >=4.0 && <5
                      , multi-except
                      , semigroupoids >=1 && <30
