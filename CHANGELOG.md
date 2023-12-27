@@ -2,8 +2,9 @@
 
 ## Unreleased
 
-* Migrated (back) to dlist, replacing dlist-nonempty
 * Split into two libraries, `multi-except`, and `multi-except:semigroupoid-instances`
+* Migrated to custom dlist, removing the dependency
+* Support more GHC versions (tested down to 7.0.4)
 
 ## 0.3.0.0 -- 2021-06-06
 
