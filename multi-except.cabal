@@ -3,7 +3,7 @@ cabal-version:       3.0
 name:                multi-except
 version:             0.3.0.0
 synopsis:            Multiple Exceptions
-description:         Report multiple errors, or a single correct value.
+description:         Succeed, or return one or more errors.
 license:             MIT
 license-file:        LICENSE
 author:              Owen Shepherd
