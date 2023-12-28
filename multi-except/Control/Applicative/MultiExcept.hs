@@ -44,7 +44,7 @@ module Control.Applicative.MultiExcept
   , mapMultiExcept
   ) where
 
-import Prelude (Eq(..), Ord(..), Either(..), (.), ($), id, Show(..), (++))
+import Prelude (Eq(..), Ord(..), Either(..), (.), ($), id, Show(..), (++), uncurry)
 
 import Control.Applicative  (Applicative(..))
 #if MIN_VERSION_base(4,8,0)
@@ -100,10 +100,21 @@ data MultiExcept err a
   | Errors !(NonEmptyDList err)
   deriving (Eq, Ord, Show)
 
+#if MIN_VERSION_base(4,9,0)
+
 -- | Run the computation.
-runMultiExcept :: MultiExcept err a -> Either (NonEmptyDList err) a
-runMultiExcept (Errors errs) = Left errs
+runMultiExcept :: MultiExcept err a -> Either (NonEmpty err) a
+runMultiExcept (Errors errs) = Left $ uncurry (:|) $ runNonEmptyDList errs
 runMultiExcept (Success a) = Right a
+
+#else
+
+-- | Run the computation.
+runMultiExcept :: MultiExcept err a -> Either (err, [err]) a
+runMultiExcept (Errors errs) = Left $ runNonEmptyDList errs
+runMultiExcept (Success a) = Right a
+
+#endif
 
 -- | Throw a single error.
 throwError :: forall a err. err -> MultiExcept err a
