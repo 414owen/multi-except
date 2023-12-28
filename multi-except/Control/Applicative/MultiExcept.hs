@@ -1,11 +1,31 @@
-{-|
-Module      : Control.Applicative.MultiExcept
-Copyright   : (c) Owen Shepherd, 2021
-License     : MIT
-Maintainer  : owen@owen.cafe
-Stability   : stable
-Portability : portable
--}
+-- |
+-- Module      : Control.Applicative.MultiExcept
+-- Copyright   : (c) Owen Shepherd, 2021
+-- License     : MIT
+-- Maintainer  : owen@owen.cafe
+-- Stability   : stable
+-- Portability : portable
+--
+--
+-- Usage:
+--
+-- Errors are accumulated through 'Applicative' sequencing.
+-- The recommended way to use 'MultiExcept' is with `ApplicativeDo`:
+--
+-- @
+-- {-# LANGUAGE ApplicativeDo #-}
+--
+-- import Control.Applicative.MultiExcept
+--
+-- errors :: MultiExcept String (Int, Int, Int)
+-- errors = do
+--   a <- throwError "no monad instance"
+--   b <- pure 12
+--   c <- throwError "i am scared"
+--   pure (a, b, c)
+-- @
+--
+--
 
 {-# LANGUAGE CPP                 #-}
 {-# LANGUAGE NoImplicitPrelude   #-}
@@ -129,8 +149,9 @@ fromEitherPoly (Right a) = Success a
 #endif
 
 -- | Join nested 'MultiExcept's with the same error type.
---   Note that this doesn't imply a __useful__ 'Monad' instance.
---   The instance defined in terms of join discards errors on the RHS of '>>='.
+-- Note that this doesn't imply a __useful__ 'Control.Monad.Monad' instance.
+-- The instance defined in terms of join discards errors on the RHS of 'Control.Monad.>>=',
+-- when the LHS is an error value.
 join :: MultiExcept err (MultiExcept err a) -> MultiExcept err a
 join (Success a) = a
 join (Errors a) = Errors a
@@ -139,6 +160,7 @@ instance Functor (MultiExcept err) where
   fmap f (Success a) = Success $ f a
   fmap _ (Errors errs) = Errors errs
 
+-- | A non-overloaded `bimap`
 mapMultiExcept:: (err -> err') -> (a -> a') -> MultiExcept err a -> MultiExcept err' a'
 mapMultiExcept _ fa (Success a)    = Success $ fa a
 mapMultiExcept ferr _ (Errors err) = Errors $ fmap ferr err
@@ -161,6 +183,18 @@ instance Applicative (MultiExcept err) where
   Errors l <*> _ = Errors l
   _ <*> Errors l = Errors l
 
+-- | Return the first success, or all of the combined errors.
+--
+-- ==== __Examples__
+--
+-- >>> pure 1 `or` throwError 3
+-- Success 1
+--
+-- >>> throwError 2 `or` pure 1
+-- Success 1
+--
+-- >>> throwError 2 `or` throwError 3
+-- Errors [2, 3]
 or :: MultiExcept err a -> MultiExcept err a -> MultiExcept err a
 Success a `or` _ = Success a
 _ `or` Success a = Success a
