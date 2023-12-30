@@ -72,4 +72,4 @@ test-suite unit-tests
                     , multi-except
                     , multi-except:semigroupoid-instances
                     , hspec >=2 && <3
-                    , semigroupoids >=1 && <30
+                    , semigroupoids >=1 && <7
