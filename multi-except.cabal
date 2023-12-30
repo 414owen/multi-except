@@ -55,7 +55,7 @@ library semigroupoid-instances
   visibility:          public
   build-depends:       base >=4.0 && <5
                      , multi-except
-                     , semigroupoids >=1 && <30
+                     , semigroupoids >=1 && <7
 
 test-suite unit-tests
   import:             common-import
