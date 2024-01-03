@@ -55,6 +55,7 @@ import Data.Foldable        (Foldable(..))
 import Data.Traversable     (Traversable(..))
 #if MIN_VERSION_base(4,9,0)
 import Data.List.NonEmpty   (NonEmpty(..))
+import Data.Tuple (uncurry)
 #endif
 
 
